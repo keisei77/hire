@@ -7,13 +7,39 @@
   "author": "lynweklm@gmail.com",
   "license": "MIT",
   "scripts": {
+    "test": "jest",
+    "check": "tslint -c tslint.json 'src/**/*.ts'",
+    "fix": "tslint --fix",
+    "format": "prettier --write",
     "build": "shx rm -rf lib && tsc -p tsconfig.json --outDir lib"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.ts": ["npm run format", "npm run fix", "npm run check", "npm test"]
+  },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "babel-jest": "^25.2.3",
+    "husky": "^4.2.3",
+    "jest": "^25.2.3",
+    "lint-staged": "^10.0.9",
+    "prettier": "2.0.2",
     "shx": "^0.3.2",
+    "tslint": "^6.1.0",
     "typescript": "^3.6.2"
   },
   "dependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.5",
     "tslib": "^1.10.0"
   }
 }
