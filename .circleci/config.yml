@@ -8,10 +8,8 @@ jobs:
     working_directory: ~/hire
     steps:
       - checkout
-      - run: cd foundations-zh
       - node/with-cache:
           steps:
-            - run: cd foundations-zh
             - run: npm install
             - run: npm test
             - run: npm run check
